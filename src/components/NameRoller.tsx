@@ -51,7 +51,7 @@ export default function NameRoller({ participants, spinning, targetIndex, onSpin
         hasCalledEnd.current = true
         posRef.current = targetPos
         setCurrentPos(targetPos)
-        onSpinEnd(participants[targetIndex])
+        onSpinEnd(participants[targetIndex!])
       }
     }
 
