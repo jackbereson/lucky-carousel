@@ -1,0 +1,114 @@
+.participants-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+}
+
+.participants-modal {
+  background: linear-gradient(135deg, #1a1040, #0d1a3a);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.participants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.participants-header h2 {
+  color: #FFD700;
+  font-size: 1.5rem;
+}
+
+.participants-count {
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.participants-table-wrapper {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.participants-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.participants-table-wrapper th,
+.participants-table-wrapper td {
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.participants-table-wrapper th {
+  color: #FFD700;
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: sticky;
+  top: 0;
+  background: #1a1040;
+}
+
+.participants-table-wrapper td {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.participants-table-wrapper tr:hover td {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.no-participants {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 3rem;
+}
+
+.btn-close-participants {
+  margin-top: 1.5rem;
+  padding: 0.7rem 2rem;
+  background: linear-gradient(135deg, #FFD700, #FF8C00);
+  color: #1a1040;
+  font-weight: 700;
+  border-radius: 10px;
+  align-self: center;
+  transition: transform 0.2s;
+}
+
+.btn-close-participants:hover {
+  transform: translateY(-2px);
+}
+
+.btn-delete-participant {
+  background: rgba(255, 60, 60, 0.2);
+  color: #ff4444;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.btn-delete-participant:hover {
+  background: rgba(255, 60, 60, 0.4);
+}
