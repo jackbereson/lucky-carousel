@@ -47,6 +47,7 @@ export interface Game2Player {
   session_id: string
   name: string
   phone: string
+  company: string
   avatar_color: string
   created_at: string
 }

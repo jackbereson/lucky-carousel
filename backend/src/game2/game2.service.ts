@@ -39,6 +39,7 @@ export class Game2Service {
     session_id: string;
     name: string;
     phone?: string;
+    company?: string;
     avatar_color?: string;
   }) {
     const player = await this.playerModel.create(dto);
@@ -189,13 +190,48 @@ export class Game2Service {
 
     return {
       total_questions: totalQuestions,
-      leaderboard: results.map((r) => ({
-        player_id: String(r._id),
-        player_name: playerMap.get(String(r._id))?.name || 'Unknown',
-        avatar_color: playerMap.get(String(r._id))?.avatar_color || '#666',
-        correct_count: r.correct_count,
-        total_time_ms: r.total_time_ms,
-      })),
+      leaderboard: results.map((r) => {
+        const player = playerMap.get(String(r._id));
+        const phone = player?.phone || '';
+        return {
+          player_id: String(r._id),
+          player_name: player?.name || 'Unknown',
+          avatar_color: player?.avatar_color || '#666',
+          phone_last4: phone.length >= 4 ? phone.slice(-4) : phone,
+          company: player?.company || '',
+          correct_count: r.correct_count,
+          total_time_ms: r.total_time_ms,
+        };
+      }),
+    };
+  }
+
+  async resetSession(sessionId: string) {
+    // Delete all players and answers for this session
+    const [deletedPlayers, deletedAnswers] = await Promise.all([
+      this.playerModel.deleteMany({ session_id: sessionId }),
+      this.answerModel.deleteMany({ session_id: sessionId }),
+    ]);
+
+    // Reset game state to waiting
+    const state = await this.stateModel.findOneAndUpdate(
+      { session_id: sessionId },
+      {
+        phase: 'waiting',
+        active_question_id: null,
+        countdown_start: null,
+        updated_at: new Date(),
+      },
+      { new: true },
+    );
+
+    if (state) {
+      this.events.emitToSession(sessionId, 'game2:state_updated', state.toJSON());
+    }
+
+    return {
+      deleted_players: deletedPlayers.deletedCount,
+      deleted_answers: deletedAnswers.deletedCount,
     };
   }
 

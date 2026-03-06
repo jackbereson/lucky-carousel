@@ -136,8 +136,8 @@ export default function Game2AdminPage() {
 
       <div className="g2admin-header">
         <div className="g2admin-header-left">
-          <button className="g2admin-nav-btn" onClick={() => navigate('/')}>
-            Trang Chu
+          <button className="g2admin-nav-btn" onClick={() => navigate('/admin')}>
+            ← Quay Lai
           </button>
           <h1 className="g2admin-title">GAME 2 - ADMIN</h1>
         </div>

@@ -25,6 +25,9 @@ export class Game2Player extends Document {
   phone: string;
 
   @Prop({ default: '' })
+  company: string;
+
+  @Prop({ default: '' })
   avatar_color: string;
 }
 

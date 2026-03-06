@@ -224,8 +224,13 @@ export default function Game2HostPage() {
                           {entry.player_name.charAt(0).toUpperCase()}
                         </div>
                         <div className="host-lb-info">
-                          <div className="host-lb-name">{entry.player_name}</div>
+                          <div className="host-lb-name">
+                            {entry.player_name}
+                            {entry.phone_last4 && <span className="host-lb-phone">****{entry.phone_last4}</span>}
+                          </div>
                           <div className="host-lb-time">
+                            {entry.company && <span className="host-lb-company">{entry.company}</span>}
+                            {entry.company && ' · '}
                             {(entry.total_time_ms / 1000).toFixed(1)}s tong thoi gian
                           </div>
                         </div>

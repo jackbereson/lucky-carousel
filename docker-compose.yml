@@ -4,6 +4,6 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MONGODB_URI=mongodb+srv://houze-work:vUG5kR3J7DlPDY79@cluster0.3n1nngb.mongodb.net/houze-lucky-wheel?appName=dev
+      - MONGODB_URI=mongodb://host.docker.internal:27017/houze-lucky-wheel
       - PORT=3000
     restart: unless-stopped

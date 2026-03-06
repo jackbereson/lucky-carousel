@@ -15,16 +15,31 @@ export default function Game2RegisterPage() {
 
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
+  const [company, setCompany] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [checkingExisting, setCheckingExisting] = useState(true)
 
-  // Check if player already registered
+  // Check if player already registered (verify with server)
   useEffect(() => {
     if (!sessionId) return
     const existingId = localStorage.getItem(`game2_player_${sessionId}`)
     if (existingId) {
-      navigate(`/game2/play/${sessionId}/q`, { replace: true })
+      // Verify player still exists in DB (may have been reset)
+      api.get(`/game2/players/${existingId}`)
+        .then(data => {
+          if (data) {
+            navigate(`/game2/play/${sessionId}/q`, { replace: true })
+          } else {
+            // Player was deleted (session reset), clear localStorage
+            localStorage.removeItem(`game2_player_${sessionId}`)
+            setCheckingExisting(false)
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem(`game2_player_${sessionId}`)
+          setCheckingExisting(false)
+        })
     } else {
       setCheckingExisting(false)
     }
@@ -44,6 +59,7 @@ export default function Game2RegisterPage() {
         session_id: sessionId,
         name: name.trim(),
         phone: phone.trim(),
+        company: company.trim(),
         avatar_color: avatarColor,
       })
 
@@ -87,13 +103,26 @@ export default function Game2RegisterPage() {
           </div>
 
           <div className="g2-register-field">
-            <label className="g2-register-label">So dien thoai (tuy chon)</label>
+            <label className="g2-register-label">San bat dong san *</label>
+            <input
+              className="g2-register-input"
+              type="text"
+              placeholder="Nhap ten san BDS..."
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="g2-register-field">
+            <label className="g2-register-label">So dien thoai *</label>
             <input
               className="g2-register-input"
               type="tel"
               placeholder="Nhap so dien thoai..."
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              required
               autoComplete="tel"
             />
           </div>
@@ -103,7 +132,7 @@ export default function Game2RegisterPage() {
           <button
             className="g2-register-submit"
             type="submit"
-            disabled={loading || !name.trim()}
+            disabled={loading || !name.trim() || !company.trim() || !phone.trim()}
           >
             {loading ? 'Dang xu ly...' : 'THAM GIA'}
           </button>

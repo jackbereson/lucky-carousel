@@ -35,6 +35,16 @@ export default function AdminHub() {
     setCreating(false)
   }
 
+  async function handleReset(sessionId: string) {
+    if (!confirm('Ban co chac muon RESET session nay?\n\nTat ca nguoi choi va ket qua se bi xoa!')) return
+    try {
+      const result = await api.post(`/game2/reset/${sessionId}`)
+      alert(`Da reset! Xoa ${result.deleted_players} nguoi choi, ${result.deleted_answers} cau tra loi.`)
+    } catch (err: any) {
+      alert('Loi reset: ' + err.message)
+    }
+  }
+
   return (
     <div className="admin-hub">
       <div className="admin-hub-content">
@@ -97,6 +107,12 @@ export default function AdminHub() {
                       onClick={() => navigate(`/game2/projector/${s.id}`)}
                     >
                       Projector
+                    </button>
+                    <button
+                      className="btn-session-action btn-reset"
+                      onClick={() => handleReset(s.id)}
+                    >
+                      Reset
                     </button>
                   </div>
                 </div>

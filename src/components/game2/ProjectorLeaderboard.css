@@ -111,6 +111,22 @@
   color: #ffffff;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.projector-leaderboard__phone {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+
+.projector-leaderboard__company {
+  font-size: 0.85rem;
+  color: #FFD700;
+  font-weight: 500;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 

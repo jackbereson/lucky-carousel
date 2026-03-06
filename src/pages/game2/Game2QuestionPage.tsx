@@ -27,13 +27,24 @@ export default function Game2QuestionPage() {
     }
   }, [sessionId, playerId, navigate])
 
-  // Fetch player name
+  // Fetch player name (redirect to register if player was deleted/reset)
   useEffect(() => {
-    if (!playerId) return
+    if (!playerId || !sessionId) return
     api.get(`/game2/players/${playerId}`)
-      .then(data => { if (data) setPlayerName(data.name) })
-      .catch(() => {})
-  }, [playerId])
+      .then(data => {
+        if (data) {
+          setPlayerName(data.name)
+        } else {
+          // Player was deleted (session reset)
+          localStorage.removeItem(`game2_player_${sessionId}`)
+          navigate(`/game2/play/${sessionId}`, { replace: true })
+        }
+      })
+      .catch(() => {
+        localStorage.removeItem(`game2_player_${sessionId}`)
+        navigate(`/game2/play/${sessionId}`, { replace: true })
+      })
+  }, [playerId, sessionId, navigate])
 
   // Reset answer state when question changes
   useEffect(() => {

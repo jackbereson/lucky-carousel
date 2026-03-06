@@ -382,6 +382,18 @@
   color: #fff;
 }
 
+.host-lb-phone {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+
+.host-lb-company {
+  color: #FFD700;
+  font-weight: 600;
+}
+
 .host-lb-time {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);

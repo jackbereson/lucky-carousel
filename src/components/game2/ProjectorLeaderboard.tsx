@@ -83,7 +83,17 @@ export default function ProjectorLeaderboard({
                 className="projector-leaderboard__avatar"
                 style={{ backgroundColor: score.player.avatar_color }}
               />
-              <div className="projector-leaderboard__name">{score.player.name}</div>
+              <div className="projector-leaderboard__name">
+                {score.player.name}
+                {score.player.phone && (
+                  <span className="projector-leaderboard__phone">
+                    ****{score.player.phone.slice(-4)}
+                  </span>
+                )}
+                {score.player.company && (
+                  <div className="projector-leaderboard__company">{score.player.company}</div>
+                )}
+              </div>
               <div className="projector-leaderboard__stats">
                 <div className="projector-leaderboard__stat">
                   <span className="projector-leaderboard__stat-value projector-leaderboard__correct">

@@ -71,6 +71,13 @@ export class Game2Controller {
     return this.service.deleteQuestion(id);
   }
 
+  // ===== Reset =====
+
+  @Post('reset/:sessionId')
+  resetSession(@Param('sessionId') sessionId: string) {
+    return this.service.resetSession(sessionId);
+  }
+
   // ===== Answers =====
 
   @Get('answers')
