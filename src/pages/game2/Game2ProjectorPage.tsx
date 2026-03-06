@@ -58,8 +58,8 @@ export default function Game2ProjectorPage() {
     return (
       <div className="game2-projector">
         <div className="game2-projector__error">
-          <div className="game2-projector__error-title">Loi</div>
-          <div className="game2-projector__error-message">Khong tim thay session ID</div>
+          <div className="game2-projector__error-title">Lỗi</div>
+          <div className="game2-projector__error-message">Không tìm thấy session ID</div>
         </div>
       </div>
     )
@@ -70,7 +70,7 @@ export default function Game2ProjectorPage() {
       <div className="game2-projector">
         <div className="game2-projector__loading">
           <div className="game2-projector__loading-spinner" />
-          Dang tai...
+          Đang tải...
         </div>
       </div>
     )
@@ -80,8 +80,8 @@ export default function Game2ProjectorPage() {
     return (
       <div className="game2-projector">
         <div className="game2-projector__error">
-          <div className="game2-projector__error-title">Khong tim thay phien</div>
-          <div className="game2-projector__error-message">Session "{sessionId}" khong ton tai</div>
+          <div className="game2-projector__error-title">Không tìm thấy phiên</div>
+          <div className="game2-projector__error-message">Session "{sessionId}" không tồn tại</div>
         </div>
       </div>
     )
@@ -96,9 +96,9 @@ export default function Game2ProjectorPage() {
           <QRCodeDisplay url={playUrl} size={300} />
           <div className="game2-projector__player-count">
             <span className="game2-projector__player-count-number">{playerCount}</span>
-            <span className="game2-projector__player-count-label">nguoi choi</span>
+            <span className="game2-projector__player-count-label">người chơi</span>
           </div>
-          <div className="game2-projector__waiting-message">Dang cho nguoi choi...</div>
+          <div className="game2-projector__waiting-message">Đang chờ người chơi...</div>
         </div>
       </div>
     )
@@ -165,10 +165,6 @@ export default function Game2ProjectorPage() {
     return (
       <div className="game2-projector">
         <div className="game2-projector__finished">
-          <div className="game2-projector__finished-title">Ket thuc!</div>
-          <div className="game2-projector__finished-subtitle">
-            Cam on {playerCount} nguoi choi da tham gia!
-          </div>
           <ProjectorLeaderboard
             answers={allAnswersForLeaderboard}
             players={players}
@@ -185,7 +181,7 @@ export default function Game2ProjectorPage() {
     <div className="game2-projector">
       <div className="game2-projector__loading">
         <div className="game2-projector__loading-spinner" />
-        Dang tai...
+        Đang tải...
       </div>
     </div>
   )

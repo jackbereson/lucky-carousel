@@ -34,9 +34,9 @@ export default function ProjectorAnswers({
 
   return (
     <div className="projector-answers">
-      <div className="projector-answers__title">Ket qua tra loi</div>
+      <div className="projector-answers__title">Kết quả trả lời</div>
       <div className="projector-answers__stats">
-        <strong>{answers.length}</strong> / {totalPlayers} nguoi choi da tra loi
+        <strong>{answers.length}</strong> / {totalPlayers} người chơi đã trả lời
       </div>
       <div className="projector-answers__bars">
         {question.options.map((option, idx) => {

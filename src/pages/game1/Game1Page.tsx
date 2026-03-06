@@ -60,7 +60,7 @@ export default function Game1Page() {
   }
 
   async function handleNewSession() {
-    if (!confirm('Tao phien moi? Danh sach nguoi choi se bi xoa.')) return
+    if (!confirm('Tạo phiên mới? Danh sách người chơi sẽ bị xóa.')) return
     const data = await api.post('/game-sessions', { game_type: 1, title: 'Quay Ten', status: 'active' })
     if (data) {
       localStorage.setItem(SESSION_KEY, data.id)
@@ -69,7 +69,7 @@ export default function Game1Page() {
   }
 
   if (!sessionId || loading) {
-    return <div className="game-page"><p style={{ textAlign: 'center', marginTop: '3rem', color: 'rgba(255,255,255,0.5)' }}>Dang tai...</p></div>
+    return <div className="game-page"><p style={{ textAlign: 'center', marginTop: '3rem', color: 'rgba(255,255,255,0.5)' }}>Đang tải...</p></div>
   }
 
   return (
@@ -78,27 +78,27 @@ export default function Game1Page() {
 
       <div className="game-header">
         <div className="header-actions">
-          <button className="btn-header" onClick={() => navigate('/')}>← Trang chu</button>
+          <button className="btn-header" onClick={() => navigate('/')}>← Trang chủ</button>
           <button className="btn-header btn-qr" onClick={() => setShowQR(!showQR)}>
-            {showQR ? 'An QR' : 'Hien QR'}
+            {showQR ? 'Ẩn QR' : 'Hiện QR'}
           </button>
-          <button className="btn-header">Nguoi Choi ({count})</button>
+          <button className="btn-header">Người Chơi ({count})</button>
           <button className="btn-header btn-results" onClick={() => navigate('/game1/results/' + sessionId)}>
-            Ket Qua ({winners.length})
+            Kết Quả ({winners.length})
           </button>
-          <button className="btn-header btn-danger" onClick={handleNewSession}>Phien Moi</button>
+          <button className="btn-header btn-danger" onClick={handleNewSession}>Phiên Mới</button>
         </div>
       </div>
 
       {showQR && (
         <div className="game1-qr-section">
           <div className="game1-qr-card">
-            <p className="game1-qr-label">Scan de tham gia</p>
+            <p className="game1-qr-label">Scan để tham gia</p>
             <div className="game1-qr-code">
               <QRCodeSVG value={registerUrl} size={200} bgColor="#ffffff" fgColor="#000000" level="M" />
             </div>
             <p className="game1-qr-url">{registerUrl}</p>
-            <p className="game1-qr-count">{count} nguoi da tham gia</p>
+            <p className="game1-qr-count">{count} người đã tham gia</p>
           </div>
         </div>
       )}
@@ -113,7 +113,7 @@ export default function Game1Page() {
             onSpinStart={handleSpinStart}
           />
           <p className="available-count">
-            Nguoi choi con lai: <strong>{available.length}</strong> / {count}
+            Người chơi còn lại: <strong>{available.length}</strong> / {count}
           </p>
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function Game1RegisterPage() {
         setPlayerName(data.full_name)
       }
     } catch (err: any) {
-      alert('Loi dang ky: ' + err.message)
+      alert('Lỗi đăng ký: ' + err.message)
     }
     setSubmitting(false)
   }
@@ -53,9 +53,9 @@ export default function Game1RegisterPage() {
       <div className="g1reg-page">
         <div className="g1reg-card">
           <div className="g1reg-success-icon">✅</div>
-          <h2 className="g1reg-success-title">DANG KY THANH CONG!</h2>
+          <h2 className="g1reg-success-title">ĐĂNG KÝ THÀNH CÔNG!</h2>
           <p className="g1reg-success-name">{playerName}</p>
-          <p className="g1reg-success-msg">Ban da duoc them vao danh sach quay thuong. Vui long cho MC quay so!</p>
+          <p className="g1reg-success-msg">Bạn đã được thêm vào danh sách quay thưởng. Vui lòng chờ MC quay số!</p>
         </div>
       </div>
     )
@@ -64,12 +64,12 @@ export default function Game1RegisterPage() {
   return (
     <div className="g1reg-page">
       <div className="g1reg-card">
-        <h1 className="g1reg-title">DANG KY THAM GIA</h1>
-        <p className="g1reg-subtitle">Nhap thong tin de tham gia quay thuong</p>
+        <h1 className="g1reg-title">ĐĂNG KÝ THAM GIA</h1>
+        <p className="g1reg-subtitle">Nhập thông tin để tham gia quay thưởng</p>
 
         <form onSubmit={handleSubmit} className="g1reg-form">
           <div className="g1reg-field">
-            <label>Ho va ten *</label>
+            <label>Họ và tên *</label>
             <input
               type="text"
               value={fullName}
@@ -91,7 +91,7 @@ export default function Game1RegisterPage() {
           </div>
 
           <div className="g1reg-field">
-            <label>So dien thoai</label>
+            <label>Số điện thoại</label>
             <input
               type="tel"
               value={phone}
@@ -101,7 +101,7 @@ export default function Game1RegisterPage() {
           </div>
 
           <button type="submit" className="g1reg-btn" disabled={submitting || !fullName.trim()}>
-            {submitting ? 'Dang dang ky...' : 'DANG KY'}
+            {submitting ? 'Đang đăng ký...' : 'ĐĂNG KÝ'}
           </button>
         </form>
       </div>

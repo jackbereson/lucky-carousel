@@ -134,7 +134,7 @@ export default function Game2HostPage() {
     return (
       <div className="host-loading">
         <div className="host-spinner" />
-        <p>Dang tai...</p>
+        <p>Đang tải...</p>
       </div>
     )
   }
@@ -142,9 +142,9 @@ export default function Game2HostPage() {
   if (!state) {
     return (
       <div className="host-loading">
-        <p>Khong tim thay session.</p>
+        <p>Không tìm thấy session.</p>
         <button className="host-btn-back" onClick={() => navigate('/admin')}>
-          Ve Admin
+          Về Admin
         </button>
       </div>
     )
@@ -155,15 +155,15 @@ export default function Game2HostPage() {
     return (
       <div className="host-page">
         <div className="host-pregame">
-          <h1 className="host-pregame-title">SAN SANG!</h1>
+          <h1 className="host-pregame-title">SẴN SÀNG!</h1>
           <div className="host-pregame-stats">
             <div className="host-stat">
               <div className="host-stat-value">{questions.length}</div>
-              <div className="host-stat-label">Cau Hoi</div>
+              <div className="host-stat-label">Câu Hỏi</div>
             </div>
             <div className="host-stat">
               <div className="host-stat-value">{playerCount}</div>
-              <div className="host-stat-label">Nguoi Choi</div>
+              <div className="host-stat-label">Người Chơi</div>
             </div>
           </div>
           <label className="host-auto-toggle">
@@ -172,14 +172,14 @@ export default function Game2HostPage() {
               checked={autoMode}
               onChange={e => setAutoMode(e.target.checked)}
             />
-            <span>Auto (3s chuyen cau)</span>
+            <span>Auto (3s chuyển câu)</span>
           </label>
           <button
             className="host-btn-start"
             onClick={handleStart}
             disabled={questions.length === 0}
           >
-            BAT DAU
+            BẮT ĐẦU
           </button>
         </div>
       </div>
@@ -200,28 +200,30 @@ export default function Game2HostPage() {
           {!showResults ? (
             <>
               <div className="host-finished-icon">&#127942;</div>
-              <h1 className="host-finished-title">KET THUC!</h1>
+              <h1 className="host-finished-title">KẾT THÚC!</h1>
               <button className="host-btn-results" onClick={fetchLeaderboard}>
-                XEM KET QUA
+                XEM KẾT QUẢ
               </button>
               <button className="host-btn-back" onClick={() => navigate('/admin')}>
-                Ve Admin
+                Về Admin
               </button>
             </>
           ) : (
             <>
-              <h1 className="host-finished-title">&#127942; KET QUA &#127942;</h1>
+              <h1 className="host-finished-title">&#127942; KẾT QUẢ &#127942;</h1>
               {leaderboard && leaderboard.leaderboard.length > 0 ? (
                 <>
                   <div className="host-results-subtitle">
-                    Top {leaderboard.leaderboard.length} tra loi nhanh nhat ({leaderboard.total_questions}/{leaderboard.total_questions} cau dung)
+                    Top {leaderboard.leaderboard.length} trả lời nhanh nhất ({leaderboard.total_questions}/{leaderboard.total_questions} câu đúng)
                   </div>
                   <div className="host-leaderboard">
                     {leaderboard.leaderboard.map((entry: any, idx: number) => (
                       <div key={entry.player_id} className={`host-lb-row host-lb-rank-${idx + 1}`}>
                         <div className="host-lb-rank">#{idx + 1}</div>
-                        <div className="host-lb-avatar" style={{ background: entry.avatar_color }}>
-                          {entry.player_name.charAt(0).toUpperCase()}
+                        <div className="host-lb-avatar">
+                          <svg viewBox="0 0 24 24" fill="currentColor" width="100%" height="100%">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                          </svg>
                         </div>
                         <div className="host-lb-info">
                           <div className="host-lb-name">
@@ -230,7 +232,7 @@ export default function Game2HostPage() {
                             {entry.company && ` · ${entry.company}`}
                           </div>
                           <div className="host-lb-time">
-                            {(entry.total_time_ms / 1000).toFixed(1)}s tong thoi gian
+                            {(entry.total_time_ms / 1000).toFixed(1)}s tổng thời gian
                           </div>
                         </div>
                         <div className="host-lb-score">
@@ -242,11 +244,11 @@ export default function Game2HostPage() {
                 </>
               ) : (
                 <div className="host-no-winners">
-                  Khong co ai tra loi dung het {leaderboard?.total_questions} cau!
+                  Không có ai trả lời đúng hết {leaderboard?.total_questions} câu!
                 </div>
               )}
               <button className="host-btn-back" onClick={() => navigate('/admin')}>
-                Ve Admin
+                Về Admin
               </button>
             </>
           )}
@@ -263,7 +265,7 @@ export default function Game2HostPage() {
     <div className="host-page">
       <div className="host-active">
         <div className="host-question-number">
-          CAU {currentIndex + 1} / {questions.length}
+          CÂU {currentIndex + 1} / {questions.length}
         </div>
 
         <div className={`host-countdown ${remaining <= 5 ? 'host-countdown-low' : ''}`}>
@@ -287,11 +289,11 @@ export default function Game2HostPage() {
           <div className="host-next-actions">
             {isLastQuestion ? (
               <button className="host-btn-finish" onClick={handleFinish}>
-                KET THUC
+                KẾT THÚC
               </button>
             ) : (
               <button className="host-btn-next" onClick={handleNext}>
-                CAU HOI TIEP THEO &rarr;
+                CÂU HỎI TIẾP THEO &rarr;
               </button>
             )}
           </div>
@@ -299,7 +301,7 @@ export default function Game2HostPage() {
 
         {countdownDone && autoMode && (
           <div className="host-auto-countdown">
-            Chuyen cau trong 3s...
+            Chuyển câu trong 3s...
           </div>
         )}
       </div>

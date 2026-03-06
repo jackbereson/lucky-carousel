@@ -46,8 +46,8 @@ export default function Game2AdminPage() {
 
   function handleDownloadTemplate() {
     const header = 'question_text,option_a,option_b,option_c,option_d,correct_answer,time_limit'
-    const example1 = 'Thu do Viet Nam la gi?,Ha Noi,Ho Chi Minh,Da Nang,Hue,Ha Noi,30'
-    const example2 = 'Trai Dat quay quanh Mat Troi?,Dung,Sai,,,Dung,20'
+    const example1 = 'Thủ đô Việt Nam là gì?,Hà Nội,Hồ Chí Minh,Đà Nẵng,Huế,Hà Nội,30'
+    const example2 = 'Trái Đất quay quanh Mặt Trời?,Đúng,Sai,,,Đúng,20'
     const csv = [header, example1, example2].join('\n')
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' })
     const url = URL.createObjectURL(blob)
@@ -71,7 +71,7 @@ export default function Game2AdminPage() {
         const rows = results.data as Record<string, string>[]
         const questionsToInsert = rows.map((row, i) => {
           const opts = [row.option_a, row.option_b, row.option_c, row.option_d].filter(o => o?.trim())
-          const isTrueFalse = opts.length === 2 && opts.every(o => ['dung', 'sai', 'true', 'false'].includes(o.toLowerCase()))
+          const isTrueFalse = opts.length === 2 && opts.every(o => ['đúng', 'sai', 'dung', 'true', 'false'].includes(o.toLowerCase()))
           return {
             session_id: sessionId,
             question_text: row.question_text || row.question || '',
@@ -84,7 +84,7 @@ export default function Game2AdminPage() {
         }).filter(q => q.question_text && q.options.length >= 2 && q.correct_answer)
 
         if (questionsToInsert.length === 0) {
-          alert('Khong tim thay cau hoi hop le trong file CSV.\n\nFormat: question_text, option_a, option_b, option_c, option_d, correct_answer, time_limit')
+          alert('Không tìm thấy câu hỏi hợp lệ trong file CSV.\n\nFormat: question_text, option_a, option_b, option_c, option_d, correct_answer, time_limit')
           setImporting(false)
           return
         }
@@ -92,14 +92,14 @@ export default function Game2AdminPage() {
         try {
           await api.post('/game2/questions/bulk', questionsToInsert)
           refetchQuestions()
-          alert(`Da import ${questionsToInsert.length} cau hoi thanh cong!`)
+          alert(`Đã import ${questionsToInsert.length} câu hỏi thành công!`)
         } catch (err: any) {
-          alert('Loi import: ' + err.message)
+          alert('Lỗi import: ' + err.message)
         }
         setImporting(false)
       },
       error: () => {
-        alert('Khong doc duoc file CSV')
+        alert('Không đọc được file CSV')
         setImporting(false)
       }
     })
@@ -109,7 +109,7 @@ export default function Game2AdminPage() {
     return (
       <div className="g2admin-loading">
         <div className="g2admin-spinner" />
-        <p>Dang tai...</p>
+        <p>Đang tải...</p>
       </div>
     )
   }
@@ -117,9 +117,9 @@ export default function Game2AdminPage() {
   if (!state) {
     return (
       <div className="g2admin-loading">
-        <p>Khong tim thay session.</p>
+        <p>Không tìm thấy session.</p>
         <button className="g2admin-back-btn" onClick={() => navigate('/')}>
-          Ve Trang Chu
+          Về Trang Chủ
         </button>
       </div>
     )
@@ -137,13 +137,13 @@ export default function Game2AdminPage() {
       <div className="g2admin-header">
         <div className="g2admin-header-left">
           <button className="g2admin-nav-btn" onClick={() => navigate('/admin')}>
-            ← Quay Lai
+            ← Quay Lại
           </button>
           <h1 className="g2admin-title">GAME 2 - ADMIN</h1>
         </div>
         <div className="g2admin-header-right">
           <span className="g2admin-session-id">Session: {sessionId.substring(0, 8)}...</span>
-          <span className="g2admin-player-badge">{playerCount} nguoi choi</span>
+          <span className="g2admin-player-badge">{playerCount} người chơi</span>
         </div>
       </div>
 
@@ -151,7 +151,7 @@ export default function Game2AdminPage() {
         {/* Left panel: Questions */}
         <div className="g2admin-panel g2admin-panel-left">
           <div className="g2admin-panel-header">
-            <h2 className="g2admin-panel-title">Cau Hoi ({questions.length})</h2>
+            <h2 className="g2admin-panel-title">Câu Hỏi ({questions.length})</h2>
             <div className="g2admin-panel-actions">
               <input
                 ref={fileInputRef}
@@ -164,10 +164,10 @@ export default function Game2AdminPage() {
                 Template
               </button>
               <button className="g2admin-import-btn" onClick={handleImportCSV} disabled={importing}>
-                {importing ? 'Dang import...' : 'Import CSV'}
+                {importing ? 'Đang import...' : 'Import CSV'}
               </button>
               <button className="g2admin-add-btn" onClick={handleAddQuestion}>
-                + Them Cau Hoi
+                + Thêm Câu Hỏi
               </button>
             </div>
           </div>

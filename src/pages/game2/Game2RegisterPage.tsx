@@ -68,7 +68,7 @@ export default function Game2RegisterPage() {
         navigate(`/game2/play/${sessionId}/q`, { replace: true })
       }
     } catch {
-      setError('Khong the dang ky. Vui long thu lai.')
+      setError('Không thể đăng ký. Vui lòng thử lại.')
     }
 
     setLoading(false)
@@ -85,15 +85,15 @@ export default function Game2RegisterPage() {
 
       <div className="g2-register-card">
         <div className="g2-register-icon">&#9889;</div>
-        <h1 className="g2-register-title">DANG KY THAM GIA</h1>
+        <h1 className="g2-register-title">ĐĂNG KÝ THAM GIA</h1>
 
         <form className="g2-register-form" onSubmit={handleSubmit}>
           <div className="g2-register-field">
-            <label className="g2-register-label">Ten cua ban *</label>
+            <label className="g2-register-label">Tên của bạn *</label>
             <input
               className="g2-register-input"
               type="text"
-              placeholder="Nhap ten..."
+              placeholder="Nhập tên..."
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -103,11 +103,11 @@ export default function Game2RegisterPage() {
           </div>
 
           <div className="g2-register-field">
-            <label className="g2-register-label">San bat dong san *</label>
+            <label className="g2-register-label">Sàn bất động sản *</label>
             <input
               className="g2-register-input"
               type="text"
-              placeholder="Nhap ten san BDS..."
+              placeholder="Nhập tên sàn BDS..."
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               required
@@ -115,11 +115,11 @@ export default function Game2RegisterPage() {
           </div>
 
           <div className="g2-register-field">
-            <label className="g2-register-label">So dien thoai *</label>
+            <label className="g2-register-label">Số điện thoại *</label>
             <input
               className="g2-register-input"
               type="tel"
-              placeholder="Nhap so dien thoai..."
+              placeholder="Nhập số điện thoại..."
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -134,7 +134,7 @@ export default function Game2RegisterPage() {
             type="submit"
             disabled={loading || !name.trim() || !company.trim() || !phone.trim()}
           >
-            {loading ? 'Dang xu ly...' : 'THAM GIA'}
+            {loading ? 'Đang xử lý...' : 'THAM GIA'}
           </button>
         </form>
       </div>

@@ -14,11 +14,11 @@ interface GameControlPanelProps {
 }
 
 const PHASE_CONFIG: Record<Game2Phase, { label: string; color: string }> = {
-  waiting: { label: 'Cho', color: '#FFD700' },
-  question_active: { label: 'Dang Tra Loi', color: '#4ade80' },
-  question_closed: { label: 'Da Dong', color: '#f97316' },
-  show_results: { label: 'Ket Qua', color: '#6CB4EE' },
-  finished: { label: 'Ket Thuc', color: '#ff6666' },
+  waiting: { label: 'Chờ', color: '#FFD700' },
+  question_active: { label: 'Đang Trả Lời', color: '#4ade80' },
+  question_closed: { label: 'Đã Đóng', color: '#f97316' },
+  show_results: { label: 'Kết Quả', color: '#6CB4EE' },
+  finished: { label: 'Kết Thúc', color: '#ff6666' },
 }
 
 export default function GameControlPanel({
@@ -79,11 +79,11 @@ export default function GameControlPanel({
 
   return (
     <div className="game-control-panel">
-      <h2 className="gcp-title">Dieu Khien Game</h2>
+      <h2 className="gcp-title">Điều Khiển Game</h2>
 
       {/* Phase display */}
       <div className="gcp-phase-display">
-        <span className="gcp-phase-label">Trang Thai:</span>
+        <span className="gcp-phase-label">Trạng Thái:</span>
         <span
           className="gcp-phase-value"
           style={{ '--phase-color': phaseInfo.color } as React.CSSProperties}
@@ -97,12 +97,12 @@ export default function GameControlPanel({
       <div className="gcp-stats">
         <div className="gcp-stat">
           <span className="gcp-stat-value">{playerCount}</span>
-          <span className="gcp-stat-label">Nguoi Choi</span>
+          <span className="gcp-stat-label">Người Chơi</span>
         </div>
         {activeQuestionId && (
           <div className="gcp-stat">
             <span className="gcp-stat-value">{answerCount}</span>
-            <span className="gcp-stat-label">Tra Loi</span>
+            <span className="gcp-stat-label">Trả Lời</span>
           </div>
         )}
       </div>
@@ -110,7 +110,7 @@ export default function GameControlPanel({
       {/* Active question info */}
       {activeQuestion && (
         <div className="gcp-active-question">
-          <span className="gcp-aq-label">Cau hoi hien tai:</span>
+          <span className="gcp-aq-label">Câu hỏi hiện tại:</span>
           <p className="gcp-aq-text">{activeQuestion.question_text}</p>
         </div>
       )}
@@ -118,13 +118,13 @@ export default function GameControlPanel({
       {/* Question selector */}
       {(phase === 'waiting') && (
         <div className="gcp-question-select">
-          <label className="gcp-select-label">Chon Cau Hoi</label>
+          <label className="gcp-select-label">Chọn Câu Hỏi</label>
           <select
             className="gcp-select"
             value={selectedQuestionId || ''}
             onChange={e => onSelectQuestion(e.target.value || null)}
           >
-            <option value="">-- Chon cau hoi --</option>
+            <option value="">-- Chọn câu hỏi --</option>
             {questions.map((q, i) => (
               <option key={q.id} value={q.id}>
                 #{i + 1}: {q.question_text.substring(0, 50)}
@@ -143,37 +143,37 @@ export default function GameControlPanel({
             onClick={handleStartQuestion}
             disabled={!selectedQuestionId}
           >
-            Bat Dau Cau Hoi
+            Bắt Đầu Câu Hỏi
           </button>
         )}
 
         {phase === 'question_active' && (
           <button className="gcp-btn gcp-btn-close" onClick={handleCloseAnswers}>
-            Dong Tra Loi
+            Đóng Trả Lời
           </button>
         )}
 
         {phase === 'question_closed' && (
           <button className="gcp-btn gcp-btn-results" onClick={handleShowResults}>
-            Hien Ket Qua
+            Hiện Kết Quả
           </button>
         )}
 
         {phase === 'show_results' && (
           <button className="gcp-btn gcp-btn-next" onClick={handleNextQuestion}>
-            Cau Hoi Tiep
+            Câu Hỏi Tiếp
           </button>
         )}
 
         {phase !== 'finished' && phase !== 'waiting' && (
           <button className="gcp-btn gcp-btn-finish" onClick={handleFinish}>
-            Ket Thuc
+            Kết Thúc
           </button>
         )}
 
         {phase === 'finished' && (
           <button className="gcp-btn gcp-btn-reset" onClick={handleNextQuestion}>
-            Choi Lai
+            Chơi Lại
           </button>
         )}
       </div>

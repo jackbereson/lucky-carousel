@@ -131,10 +131,10 @@ export default function Game2QuestionPage() {
       {state.phase === 'show_results' && (
         <div className="g2-waiting-results">
           <div className="g2-waiting-results-icon">&#9203;</div>
-          <div className="g2-waiting-results-title">Dang cho cau hoi tiep...</div>
+          <div className="g2-waiting-results-title">Đang chờ câu hỏi tiếp...</div>
           {questionNumber > 0 && (
             <div className="g2-waiting-results-progress">
-              Da hoan thanh {questionNumber} / {totalQuestions} cau
+              Đã hoàn thành {questionNumber} / {totalQuestions} câu
             </div>
           )}
         </div>
@@ -143,20 +143,20 @@ export default function Game2QuestionPage() {
       {state.phase === 'finished' && (
         <div className="g2-finished">
           <div className="g2-finished-icon">&#127942;</div>
-          <div className="g2-finished-title">Game da ket thuc!</div>
-          <div className="g2-finished-sub">Cam on {playerName} da tham gia!</div>
+          <div className="g2-finished-title">Game đã kết thúc!</div>
+          <div className="g2-finished-sub">Cảm ơn {playerName} đã tham gia!</div>
           <div className="g2-finished-stats">
             <div className="g2-finished-stat">
               <div className="g2-finished-stat-value">
                 {allMyAnswers.filter(a => a.is_correct).length}
               </div>
-              <div className="g2-finished-stat-label">Dung</div>
+              <div className="g2-finished-stat-label">Đúng</div>
             </div>
             <div className="g2-finished-stat">
               <div className="g2-finished-stat-value">
                 {allMyAnswers.length}
               </div>
-              <div className="g2-finished-stat-label">Tong</div>
+              <div className="g2-finished-stat-label">Tổng</div>
             </div>
           </div>
         </div>

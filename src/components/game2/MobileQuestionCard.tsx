@@ -83,7 +83,7 @@ export default function MobileQuestionCard({
   return (
     <div className={`mq-card ${isTimedOut && !hasAnswered ? 'mq-timed-out' : ''}`}>
       {/* Question number */}
-      <div className="mq-question-number">Cau {questionNumber} / {totalQuestions}</div>
+      <div className="mq-question-number">Câu {questionNumber} / {totalQuestions}</div>
 
       {/* Timer */}
       <div className={`mq-timer-number ${remaining <= 5 ? 'mq-timer-low' : ''}`}>{clockDisplay}</div>
@@ -100,7 +100,7 @@ export default function MobileQuestionCard({
           <input
             className="mq-text-input"
             type="text"
-            placeholder="Nhap cau tra loi..."
+            placeholder="Nhập câu trả lời..."
             value={textAnswer}
             onChange={(e) => setTextAnswer(e.target.value)}
             disabled={hasAnswered || isLocked}
@@ -110,7 +110,7 @@ export default function MobileQuestionCard({
             onClick={handleTextSubmit}
             disabled={hasAnswered || !textAnswer.trim() || isLocked}
           >
-            {hasAnswered ? 'Da tra loi' : 'Gui cau tra loi'}
+            {hasAnswered ? 'Đã trả lời' : 'Gửi câu trả lời'}
           </button>
         </div>
       ) : (
@@ -139,7 +139,7 @@ export default function MobileQuestionCard({
       {/* Timeout overlay - only show when local countdown reaches 0 */}
       {isTimedOut && !hasAnswered && (
         <div className="mq-timeout-overlay">
-          <div className="mq-timeout-text">HET GIO!</div>
+          <div className="mq-timeout-text">HẾT GIỜ!</div>
         </div>
       )}
     </div>

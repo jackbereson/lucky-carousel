@@ -11,7 +11,7 @@ interface QuestionEditorProps {
 }
 
 const DEFAULT_OPTIONS = ['', '', '', '']
-const TRUE_FALSE_OPTIONS = ['Dung', 'Sai']
+const TRUE_FALSE_OPTIONS = ['Đúng', 'Sai']
 
 export default function QuestionEditor({ sessionId, question, nextSortOrder, onClose }: QuestionEditorProps) {
   const [questionText, setQuestionText] = useState('')
@@ -92,40 +92,40 @@ export default function QuestionEditor({ sessionId, question, nextSortOrder, onC
     <div className="question-editor-overlay" onClick={onClose}>
       <div className="question-editor" onClick={e => e.stopPropagation()}>
         <h2 className="question-editor-title">
-          {question ? 'Chinh Sua Cau Hoi' : 'Tao Cau Hoi Moi'}
+          {question ? 'Chỉnh Sửa Câu Hỏi' : 'Tạo Câu Hỏi Mới'}
         </h2>
 
         <div className="qe-field">
-          <label className="qe-label">Cau Hoi</label>
+          <label className="qe-label">Câu Hỏi</label>
           <textarea
             className="qe-textarea"
             value={questionText}
             onChange={e => setQuestionText(e.target.value)}
-            placeholder="Nhap noi dung cau hoi..."
+            placeholder="Nhập nội dung câu hỏi..."
             rows={3}
           />
         </div>
 
         <div className="qe-field">
-          <label className="qe-label">Loai Cau Hoi</label>
+          <label className="qe-label">Loại Câu Hỏi</label>
           <div className="qe-type-selector">
             <button
               className={`qe-type-btn ${questionType === 'multiple_choice' ? 'active' : ''}`}
               onClick={() => handleTypeChange('multiple_choice')}
             >
-              Trac Nghiem
+              Trắc Nghiệm
             </button>
             <button
               className={`qe-type-btn ${questionType === 'true_false' ? 'active' : ''}`}
               onClick={() => handleTypeChange('true_false')}
             >
-              Dung / Sai
+              Đúng / Sai
             </button>
           </div>
         </div>
 
         <div className="qe-field">
-          <label className="qe-label">Cac Lua Chon</label>
+          <label className="qe-label">Các Lựa Chọn</label>
           <div className="qe-options">
             {currentOptions.map((opt, i) => (
               <div key={i} className="qe-option-row">
@@ -145,11 +145,11 @@ export default function QuestionEditor({ sessionId, question, nextSortOrder, onC
                     className="qe-option-input"
                     value={opt}
                     onChange={e => handleOptionChange(i, e.target.value)}
-                    placeholder={`Lua chon ${String.fromCharCode(65 + i)}`}
+                    placeholder={`Lựa chọn ${String.fromCharCode(65 + i)}`}
                   />
                 )}
                 {correctAnswer === opt && opt && (
-                  <span className="qe-correct-badge">Dap an dung</span>
+                  <span className="qe-correct-badge">Đáp án đúng</span>
                 )}
               </div>
             ))}
@@ -157,7 +157,7 @@ export default function QuestionEditor({ sessionId, question, nextSortOrder, onC
         </div>
 
         <div className="qe-field">
-          <label className="qe-label">Thoi Gian (giay)</label>
+          <label className="qe-label">Thời Gian (giây)</label>
           <input
             type="number"
             className="qe-time-input"
@@ -170,14 +170,14 @@ export default function QuestionEditor({ sessionId, question, nextSortOrder, onC
 
         <div className="qe-actions">
           <button className="qe-btn qe-btn-cancel" onClick={onClose}>
-            Huy
+            Hủy
           </button>
           <button
             className="qe-btn qe-btn-save"
             onClick={handleSave}
             disabled={saving || !questionText.trim() || !correctAnswer}
           >
-            {saving ? 'Dang luu...' : 'Luu'}
+            {saving ? 'Đang lưu...' : 'Lưu'}
           </button>
         </div>
       </div>

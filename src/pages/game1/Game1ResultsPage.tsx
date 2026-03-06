@@ -25,26 +25,26 @@ export default function Game1ResultsPage() {
       <div className="results-content">
         <div className="results-header">
           <button className="btn-back-results" onClick={() => navigate('/game1')}>
-            ← Quay lai
+            ← Quay lại
           </button>
-          <h1 className="results-title">KET QUA TRUNG THUONG</h1>
+          <h1 className="results-title">KẾT QUẢ TRÚNG THƯỞNG</h1>
         </div>
 
         {winners.length === 0 ? (
           <div className="no-winners">
             <span className="no-winners-icon">🎰</span>
-            <p>Chua co ai trung thuong</p>
+            <p>Chưa có ai trúng thưởng</p>
           </div>
         ) : (
           <div className="winners-table-container">
             <div className="winners-count">
-              Tong so nguoi trung: <strong>{winners.length}</strong>
+              Tổng số người trúng: <strong>{winners.length}</strong>
             </div>
             <table className="winners-table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Ho Ten</th>
+                  <th>Họ Tên</th>
                   <th>CCCD</th>
                   <th>SDT</th>
                 </tr>

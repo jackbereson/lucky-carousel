@@ -8,22 +8,22 @@ interface QuestionListProps {
 }
 
 const TYPE_LABELS: Record<string, string> = {
-  multiple_choice: 'Trac Nghiem',
-  true_false: 'Dung/Sai',
-  text: 'Van Ban',
+  multiple_choice: 'Trắc Nghiệm',
+  true_false: 'Đúng/Sai',
+  text: 'Văn Bản',
 }
 
 export default function QuestionList({ questions, onEdit }: QuestionListProps) {
   async function handleDelete(question: Question) {
-    if (!confirm(`Xoa cau hoi: "${question.question_text}"?`)) return
+    if (!confirm(`Xóa câu hỏi: "${question.question_text}"?`)) return
     await api.delete(`/game2/questions/${question.id}`)
   }
 
   if (questions.length === 0) {
     return (
       <div className="question-list-empty">
-        <p>Chua co cau hoi nao.</p>
-        <p className="question-list-empty-hint">Bam "Them Cau Hoi" de bat dau.</p>
+        <p>Chưa có câu hỏi nào.</p>
+        <p className="question-list-empty-hint">Bấm "Thêm Câu Hỏi" để bắt đầu.</p>
       </div>
     )
   }
@@ -55,10 +55,10 @@ export default function QuestionList({ questions, onEdit }: QuestionListProps) {
 
           <div className="question-item-actions">
             <button className="qi-btn qi-btn-edit" onClick={() => onEdit(q)}>
-              Sua
+              Sửa
             </button>
             <button className="qi-btn qi-btn-delete" onClick={() => handleDelete(q)}>
-              Xoa
+              Xóa
             </button>
           </div>
         </div>

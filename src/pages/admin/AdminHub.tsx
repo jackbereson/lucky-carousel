@@ -30,18 +30,18 @@ export default function AdminHub() {
         navigate(`/game2/admin/${session.id}`)
       }
     } catch (err: any) {
-      alert('Loi tao session: ' + err.message)
+      alert('Lỗi tạo session: ' + err.message)
     }
     setCreating(false)
   }
 
   async function handleReset(sessionId: string) {
-    if (!confirm('Ban co chac muon RESET session nay?\n\nTat ca nguoi choi va ket qua se bi xoa!')) return
+    if (!confirm('Bạn có chắc muốn RESET session này?\n\nTất cả người chơi và kết quả sẽ bị xóa!')) return
     try {
       const result = await api.post(`/game2/reset/${sessionId}`)
-      alert(`Da reset! Xoa ${result.deleted_players} nguoi choi, ${result.deleted_answers} cau tra loi.`)
+      alert(`Đã reset! Xóa ${result.deleted_players} người chơi, ${result.deleted_answers} câu trả lời.`)
     } catch (err: any) {
-      alert('Loi reset: ' + err.message)
+      alert('Lỗi reset: ' + err.message)
     }
   }
 
@@ -50,17 +50,17 @@ export default function AdminHub() {
       <div className="admin-hub-content">
         <div className="admin-hub-header">
           <button className="btn-back" onClick={() => navigate('/')}>
-            ← Trang chu
+            ← Trang chủ
           </button>
-          <h1 className="admin-hub-title">QUAN LY GAME CAU HOI</h1>
+          <h1 className="admin-hub-title">QUẢN LÝ GAME CÂU HỎI</h1>
         </div>
 
         <div className="create-session-card">
-          <h2>Tao Session Moi</h2>
+          <h2>Tạo Session Mới</h2>
           <div className="create-form">
             <input
               type="text"
-              placeholder="Ten session (VD: Team Building Q1 2026)"
+              placeholder="Tên session (VD: Team Building Q1 2026)"
               value={title}
               onChange={e => setTitle(e.target.value)}
               className="input-session-title"
@@ -71,14 +71,14 @@ export default function AdminHub() {
               onClick={handleCreate}
               disabled={creating || !title.trim()}
             >
-              {creating ? 'Dang tao...' : 'Tao Moi'}
+              {creating ? 'Đang tạo...' : 'Tạo Mới'}
             </button>
           </div>
         </div>
 
         {sessions.length > 0 && (
           <div className="sessions-list">
-            <h2>Cac Session Da Tao</h2>
+            <h2>Các Session Đã Tạo</h2>
             <div className="sessions-grid">
               {sessions.map(s => (
                 <div key={s.id} className="session-card">
@@ -100,7 +100,7 @@ export default function AdminHub() {
                       className="btn-session-action btn-host"
                       onClick={() => navigate(`/game2/host/${s.id}`)}
                     >
-                      Chu Toa
+                      Chủ Toạ
                     </button>
                     <button
                       className="btn-session-action btn-projector"

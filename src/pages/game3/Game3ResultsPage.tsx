@@ -12,7 +12,7 @@ export default function Game3ResultsPage() {
   }, [])
 
   function handleClear() {
-    if (confirm('Ban co chac muon xoa tat ca lich su?')) {
+    if (confirm('Bạn có chắc muốn xóa tất cả lịch sử?')) {
       clearPrizeResults()
       setResults([])
     }
@@ -28,12 +28,12 @@ export default function Game3ResultsPage() {
       <div className="game3-results-content">
         <div className="game3-results-header">
           <button className="game3-btn-back-results" onClick={() => navigate('/game3')}>
-            ← Quay lai
+            ← Quay lại
           </button>
-          <h1 className="game3-results-title">LICH SU QUAY THUONG</h1>
+          <h1 className="game3-results-title">LỊCH SỬ QUAY THƯỞNG</h1>
           {results.length > 0 && (
             <button className="game3-btn-clear-winners" onClick={handleClear}>
-              Xoa lich su
+              Xóa lịch sử
             </button>
           )}
         </div>
@@ -41,19 +41,19 @@ export default function Game3ResultsPage() {
         {results.length === 0 ? (
           <div className="game3-no-winners">
             <span className="game3-no-winners-icon">🎡</span>
-            <p>Chua co luot quay nao</p>
+            <p>Chưa có lượt quay nào</p>
           </div>
         ) : (
           <div className="game3-winners-table-container">
             <div className="game3-winners-count">
-              Tong so luot quay: <strong>{results.length}</strong>
+              Tổng số lượt quay: <strong>{results.length}</strong>
             </div>
             <table className="game3-winners-table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Giai Thuong</th>
-                  <th>Thoi Gian</th>
+                  <th>Giải Thưởng</th>
+                  <th>Thời Gian</th>
                 </tr>
               </thead>
               <tbody>
