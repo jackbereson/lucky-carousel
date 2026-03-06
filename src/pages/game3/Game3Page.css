@@ -1,0 +1,177 @@
+.game3-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 2rem 2rem;
+}
+
+.game3-bg-effects {
+  display: none;
+}
+
+/* Header */
+.game3-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.game3-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.game3-btn-header {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.game3-btn-header:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.game3-btn-results {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+}
+
+/* Main content */
+.game3-content {
+  position: relative;
+  z-index: 1;
+}
+
+.game3-wheel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prize Result Modal */
+.prize-result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.prize-result-modal {
+  position: relative;
+  background: rgba(15, 15, 35, 0.95);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.prize-result-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: conic-gradient(from 0deg, #FFD700, #FF6B35, #E31C25, #4A90D9, #FFD700);
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.prize-result-title {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, #FFD700 0%, #FF8C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.prize-result-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 30px currentColor;
+}
+
+.prize-result-coins {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.prize-floating-coin {
+  font-size: 2rem;
+  animation: floatCoin 1.5s ease-in-out infinite;
+}
+
+@keyframes floatCoin {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.btn-prize-close {
+  padding: 0.8rem 3rem;
+  background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+  border: 2px solid #FFD700;
+  color: white;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.btn-prize-close:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .game3-header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .game3-page {
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  .prize-result-name {
+    font-size: 1.8rem;
+  }
+}

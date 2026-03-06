@@ -1,0 +1,149 @@
+.projector-answers {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.projector-answers__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FFD700;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.projector-answers__stats {
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.projector-answers__stats strong {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.projector-answers__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.projector-answers__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.projector-answers__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.projector-answers__letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.projector-answers__row:nth-child(1) .projector-answers__letter {
+  background: rgba(231, 76, 60, 0.25);
+  color: #e74c3c;
+}
+.projector-answers__row:nth-child(2) .projector-answers__letter {
+  background: rgba(52, 152, 219, 0.25);
+  color: #3498db;
+}
+.projector-answers__row:nth-child(3) .projector-answers__letter {
+  background: rgba(46, 204, 113, 0.25);
+  color: #2ecc71;
+}
+.projector-answers__row:nth-child(4) .projector-answers__letter {
+  background: rgba(241, 196, 15, 0.25);
+  color: #f1c40f;
+}
+
+.projector-answers__option-text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projector-answers__bar-track {
+  flex: 1;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.projector-answers__bar-fill {
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+  min-width: 0;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+}
+
+.projector-answers__bar-fill--default {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.5));
+}
+
+.projector-answers__bar-fill--correct {
+  background: linear-gradient(90deg, rgba(76, 175, 80, 0.4), rgba(76, 175, 80, 0.7));
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.projector-answers__bar-fill--wrong {
+  background: linear-gradient(90deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.35));
+}
+
+.projector-answers__bar-count {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.projector-answers__bar-count--outside {
+  position: absolute;
+  right: -50px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+/* Correct answer indicator */
+.projector-answers__row--correct .projector-answers__label {
+  position: relative;
+}
+
+.projector-answers__row--correct::after {
+  content: '\2713';
+  font-size: 1.6rem;
+  color: #4caf50;
+  font-weight: 900;
+  margin-left: 8px;
+  flex-shrink: 0;
+}

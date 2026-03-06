@@ -1,0 +1,160 @@
+.projector-leaderboard {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projector-leaderboard__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FFD700;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.projector-leaderboard__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.projector-leaderboard__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Top 3 special styles */
+.projector-leaderboard__row--rank-1 {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.1);
+  padding: 20px 24px;
+}
+
+.projector-leaderboard__row--rank-2 {
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.12), rgba(192, 192, 192, 0.04));
+  border-color: rgba(192, 192, 192, 0.25);
+  padding: 18px 24px;
+}
+
+.projector-leaderboard__row--rank-3 {
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.12), rgba(205, 127, 50, 0.04));
+  border-color: rgba(205, 127, 50, 0.25);
+  padding: 18px 24px;
+}
+
+.projector-leaderboard__rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.projector-leaderboard__row--rank-1 .projector-leaderboard__rank {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #1a1a2e;
+  font-size: 1.5rem;
+  width: 52px;
+  height: 52px;
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+}
+
+.projector-leaderboard__row--rank-2 .projector-leaderboard__rank {
+  background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+  color: #1a1a2e;
+  width: 48px;
+  height: 48px;
+}
+
+.projector-leaderboard__row--rank-3 .projector-leaderboard__rank {
+  background: linear-gradient(135deg, #cd7f32, #b8690e);
+  color: #1a1a2e;
+  width: 48px;
+  height: 48px;
+}
+
+.projector-leaderboard__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.projector-leaderboard__row--rank-1 .projector-leaderboard__avatar {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.projector-leaderboard__name {
+  flex: 1;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projector-leaderboard__row--rank-1 .projector-leaderboard__name {
+  font-size: 1.6rem;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.projector-leaderboard__stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.projector-leaderboard__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.projector-leaderboard__stat-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.projector-leaderboard__row--rank-1 .projector-leaderboard__stat-value {
+  color: #FFD700;
+}
+
+.projector-leaderboard__stat-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.projector-leaderboard__correct {
+  color: #4caf50;
+}
+
+.projector-leaderboard__row--rank-1 .projector-leaderboard__correct {
+  color: #4caf50;
+}

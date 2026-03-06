@@ -1,0 +1,160 @@
+.game3-results-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.game3-results-bg-effects {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.game3-results-bg-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.2;
+}
+
+.game3-results-bg-light-1 {
+  width: 400px;
+  height: 400px;
+  background: #ffd700;
+  top: -100px;
+  right: 20%;
+}
+
+.game3-results-bg-light-2 {
+  width: 300px;
+  height: 300px;
+  background: #ff6b6b;
+  bottom: -50px;
+  left: 10%;
+}
+
+.game3-results-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.game3-results-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.game3-btn-back-results {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.game3-btn-back-results:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.game3-results-title {
+  font-size: 2rem;
+  background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+.game3-no-winners {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.game3-no-winners-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.game3-winners-count {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1rem;
+}
+
+.game3-winners-table-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.game3-winners-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.game3-winners-table th,
+.game3-winners-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.game3-winners-table th {
+  color: #FFD700;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.game3-winners-table td {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+.game3-winners-table tr:hover td {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.game3-prize-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.game3-winner-time {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+.game3-btn-clear-winners {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 60, 60, 0.15);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  color: #ff6666;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.game3-btn-clear-winners:hover {
+  background: rgba(255, 60, 60, 0.3);
+  border-color: rgba(255, 60, 60, 0.5);
+}

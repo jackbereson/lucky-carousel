@@ -1,0 +1,180 @@
+.prize-editor-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.prize-editor-modal {
+  background: rgba(20, 20, 40, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 500px;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.prize-editor-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.prize-add-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.prize-input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.prize-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.prize-input:focus {
+  outline: none;
+  border-color: #FFD700;
+}
+
+.btn-add-prize {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #FFD700;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-add-prize:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+.prize-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  max-height: 350px;
+}
+
+.prize-empty {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+}
+
+.prize-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.prize-color-picker {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+}
+
+.prize-color-picker::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.prize-color-picker::-webkit-color-swatch {
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prize-name-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.prize-name-input:focus {
+  outline: none;
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.btn-remove-prize {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 60, 60, 0.15);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  color: #ff6666;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.btn-remove-prize:hover {
+  background: rgba(255, 60, 60, 0.3);
+}
+
+.prize-editor-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  padding: 0.6rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-save-prizes {
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(180deg, #FFD700 0%, #CC8800 100%);
+  color: #1a0a00;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.btn-save-prizes:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}

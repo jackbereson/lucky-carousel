@@ -1,0 +1,122 @@
+.g1reg-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.g1reg-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.g1reg-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.25rem;
+}
+
+.g1reg-subtitle {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.g1reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.g1reg-field {
+  text-align: left;
+}
+
+.g1reg-field label {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.g1reg-field input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  min-height: 48px;
+}
+
+.g1reg-field input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.g1reg-field input:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.15);
+}
+
+.g1reg-btn {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+  border: 2px solid #FFD700;
+  color: white;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  min-height: 52px;
+  transition: all 0.3s;
+}
+
+.g1reg-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+}
+
+.g1reg-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Success state */
+.g1reg-success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.g1reg-success-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+}
+
+.g1reg-success-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.g1reg-success-msg {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

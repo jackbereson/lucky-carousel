@@ -1,0 +1,338 @@
+.spinning-wheel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Glow aura behind the wheel */
+.spinning-wheel-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background:
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 60, 60, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+  animation: wheelGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes wheelGlow {
+  0% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+.wheel-stage {
+  position: relative;
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  max-width: 85vw;
+  max-height: 85vw;
+}
+
+/* The pointer arrow at the top */
+.wheel-pointer {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 48px solid #FFD700;
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.6));
+}
+
+.wheel-pointer::after {
+  content: '';
+  position: absolute;
+  top: -48px;
+  left: -16px;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 38px solid #FFF0A0;
+}
+
+/* Outer ring / border of the wheel */
+.wheel-outer-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #FFD700 0deg, #FFA500 15deg,
+    #FFD700 30deg, #FFA500 45deg,
+    #FFD700 60deg, #FFA500 75deg,
+    #FFD700 90deg, #FFA500 105deg,
+    #FFD700 120deg, #FFA500 135deg,
+    #FFD700 150deg, #FFA500 165deg,
+    #FFD700 180deg, #FFA500 195deg,
+    #FFD700 210deg, #FFA500 225deg,
+    #FFD700 240deg, #FFA500 255deg,
+    #FFD700 270deg, #FFA500 285deg,
+    #FFD700 300deg, #FFA500 315deg,
+    #FFD700 330deg, #FFA500 345deg,
+    #FFD700 360deg
+  );
+  box-shadow:
+    0 0 40px rgba(255, 215, 0, 0.4),
+    0 0 80px rgba(255, 215, 0, 0.15),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* LED-style dots around the outer ring */
+.wheel-leds {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wheel-led {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  box-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+}
+
+.wheel-led.on {
+  background: #fff;
+  animation: ledBlink 0.6s ease-in-out infinite alternate;
+}
+
+.wheel-led.off {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes ledBlink {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* The main wheel container */
+.wheel-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 3;
+  border: 4px solid rgba(255, 215, 0, 0.6);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Each segment */
+.wheel-segment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  overflow: hidden;
+}
+
+.wheel-segment-color {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  transform-origin: 50% 50%;
+}
+
+/* Text inside segments */
+.wheel-segment-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 18%;
+}
+
+.wheel-segment-label {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  text-align: right;
+  letter-spacing: 0.3px;
+}
+
+/* Center hub */
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFD700, #CC8800);
+  border: 4px solid #FFF0A0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 0.5),
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.wheel-center:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.7),
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.wheel-center-text {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #1a0a00;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.wheel-center.is-spinning {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Spin button beneath */
+.btn-spin {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+  border: 3px solid #FFD700;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3), 0 0 60px rgba(255, 215, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn-spin:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.5), 0 0 80px rgba(255, 215, 0, 0.3);
+}
+
+.btn-spin:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Empty state */
+.wheel-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+  z-index: 5;
+}
+
+.wheel-empty p {
+  margin: 0.25rem 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .wheel-stage {
+    width: 340px;
+    height: 340px;
+  }
+
+  .wheel-center {
+    width: 60px;
+    height: 60px;
+  }
+
+  .wheel-center-text {
+    font-size: 0.7rem;
+  }
+
+  .wheel-segment-label {
+    font-size: 0.55rem;
+    max-width: 60px;
+  }
+
+  .wheel-pointer {
+    top: -22px;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 36px solid #FFD700;
+  }
+
+  .wheel-pointer::after {
+    top: -36px;
+    left: -11px;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 28px solid #FFF0A0;
+  }
+
+  .btn-spin {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .spinning-wheel-wrapper::before {
+    width: 100%;
+    height: 400px;
+  }
+
+  .wheel-outer-ring {
+    inset: -8px;
+  }
+
+  .wheel-leds {
+    inset: -8px;
+  }
+}
