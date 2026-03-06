@@ -1,13 +1,15 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGame2State } from '../../lib/hooks/useGame2State'
 import { useGame2Players } from '../../lib/hooks/useGame2Players'
 import { useGame2Answers } from '../../lib/hooks/useGame2Answers'
 import { useCountdown } from '../../lib/hooks/useCountdown'
+import { api } from '../../lib/api'
 import QRCodeDisplay from '../../components/QRCodeDisplay'
 import ProjectorQuestion from '../../components/game2/ProjectorQuestion'
 import ProjectorAnswers from '../../components/game2/ProjectorAnswers'
 import ProjectorLeaderboard from '../../components/game2/ProjectorLeaderboard'
+import type { Game2Answer } from '../../lib/types'
 import './Game2ProjectorPage.css'
 
 export default function Game2ProjectorPage() {
@@ -15,6 +17,17 @@ export default function Game2ProjectorPage() {
   const { state, questions, loading: stateLoading } = useGame2State(sessionId || '')
   const { players, count: playerCount } = useGame2Players(sessionId || '')
   const { answers } = useGame2Answers(sessionId || '', state?.active_question_id ?? null)
+
+  // Fetch ALL answers for leaderboard (especially needed after F5 or when finished)
+  const [allSessionAnswers, setAllSessionAnswers] = useState<Game2Answer[]>([])
+
+  useEffect(() => {
+    if (!sessionId || !state) return
+    if (state.phase === 'show_results' || state.phase === 'finished') {
+      api.get<Game2Answer[]>(`/game2/answers?session_id=${sessionId}`)
+        .then(data => { if (data) setAllSessionAnswers(data) })
+    }
+  }, [sessionId, state?.phase])
 
   const remaining = useCountdown(
     state?.countdown_start ?? null,
@@ -34,17 +47,10 @@ export default function Game2ProjectorPage() {
     return idx >= 0 ? idx : 0
   }, [activeQuestion, questions])
 
-  // Collect ALL answers across all questions for leaderboard
-  // We use a separate hook call for the active question, but for the leaderboard
-  // we need all answers. We'll fetch them via API
-  // For now, pass what we have -- the page will use accumulated answers from results phase
+  // Use all session answers for leaderboard, fallback to current question answers
   const allAnswersForLeaderboard = useMemo(() => {
-    // In results / finished phases, we want all answers.
-    // The useGame2Answers hook filters by questionId, so for leaderboard
-    // we pass the current answers. The parent page could be enhanced to
-    // collect all answers, but for now the leaderboard uses what's available.
-    return answers
-  }, [answers])
+    return allSessionAnswers.length > 0 ? allSessionAnswers : answers
+  }, [allSessionAnswers, answers])
 
   const playUrl = `${window.location.origin}/game2/play/${sessionId}`
 

@@ -377,21 +377,12 @@
 }
 
 .host-lb-name {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #fff;
-}
-
-.host-lb-phone {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin-left: 0.5rem;
-  font-weight: 400;
-}
-
-.host-lb-company {
   color: #FFD700;
-  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .host-lb-time {

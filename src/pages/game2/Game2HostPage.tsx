@@ -226,11 +226,10 @@ export default function Game2HostPage() {
                         <div className="host-lb-info">
                           <div className="host-lb-name">
                             {entry.player_name}
-                            {entry.phone_last4 && <span className="host-lb-phone">****{entry.phone_last4}</span>}
+                            {entry.phone_last4 && ` · ****${entry.phone_last4}`}
+                            {entry.company && ` · ${entry.company}`}
                           </div>
                           <div className="host-lb-time">
-                            {entry.company && <span className="host-lb-company">{entry.company}</span>}
-                            {entry.company && ' · '}
                             {(entry.total_time_ms / 1000).toFixed(1)}s tong thoi gian
                           </div>
                         </div>

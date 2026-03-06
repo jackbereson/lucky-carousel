@@ -70,7 +70,7 @@ export default function ProjectorLeaderboard({
 
   return (
     <div className="projector-leaderboard">
-      <div className="projector-leaderboard__title">Bang xep hang</div>
+      <div className="projector-leaderboard__title">Bảng xếp hạng</div>
       <div className="projector-leaderboard__list">
         {scores.map((score, idx) => {
           const rank = idx + 1
@@ -85,21 +85,15 @@ export default function ProjectorLeaderboard({
               />
               <div className="projector-leaderboard__name">
                 {score.player.name}
-                {score.player.phone && (
-                  <span className="projector-leaderboard__phone">
-                    ****{score.player.phone.slice(-4)}
-                  </span>
-                )}
-                {score.player.company && (
-                  <div className="projector-leaderboard__company">{score.player.company}</div>
-                )}
+                {score.player.phone && ` · ****${score.player.phone.slice(-4)}`}
+                {score.player.company && ` · ${score.player.company}`}
               </div>
               <div className="projector-leaderboard__stats">
                 <div className="projector-leaderboard__stat">
                   <span className="projector-leaderboard__stat-value projector-leaderboard__correct">
                     {score.correctCount}/{questions.length}
                   </span>
-                  <span className="projector-leaderboard__stat-label">Dung</span>
+                  <span className="projector-leaderboard__stat-label">Đúng</span>
                 </div>
                 <div className="projector-leaderboard__stat">
                   <span className="projector-leaderboard__stat-value">
@@ -114,7 +108,7 @@ export default function ProjectorLeaderboard({
 
         {scores.length === 0 && (
           <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', padding: '40px', fontSize: '1.2rem' }}>
-            Chua co du lieu
+            Chưa có dữ liệu
           </div>
         )}
       </div>
