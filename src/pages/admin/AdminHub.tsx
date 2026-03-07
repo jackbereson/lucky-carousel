@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../lib/api'
+import { useAuth } from '../../lib/AuthContext'
 import type { GameSession } from '../../lib/types'
 import './AdminHub.css'
 
 export default function AdminHub() {
   const navigate = useNavigate()
+  const { logout } = useAuth()
   const [sessions, setSessions] = useState<GameSession[]>([])
   const [title, setTitle] = useState('')
   const [creating, setCreating] = useState(false)
@@ -53,6 +55,9 @@ export default function AdminHub() {
             ← Trang chủ
           </button>
           <h1 className="admin-hub-title">QUẢN LÝ GAME CÂU HỎI</h1>
+          <button className="btn-back" onClick={() => { logout(); navigate('/login') }}>
+            Đăng xuất
+          </button>
         </div>
 
         <div className="create-session-card">

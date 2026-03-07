@@ -40,7 +40,8 @@
 }
 
 .create-session-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(74, 144, 217, 0.3);
   border-radius: 16px;
   padding: 2rem;
@@ -61,15 +62,15 @@
 .input-session-title {
   flex: 1;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   color: white;
   font-size: 1rem;
 }
 
 .input-session-title::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .input-session-title:focus {
@@ -99,7 +100,7 @@
 }
 
 .sessions-list h2 {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
@@ -111,8 +112,9 @@
 }
 
 .session-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
   display: flex;
@@ -125,6 +127,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+  color: #fff;
 }
 
 .session-status {
@@ -152,7 +155,7 @@
 }
 
 .session-date {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
   margin-top: 0.25rem;
 }

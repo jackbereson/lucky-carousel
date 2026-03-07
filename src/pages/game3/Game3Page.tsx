@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getPrizes, addPrizeResult, type Prize } from '../../lib/storage'
+import { useAuth } from '../../lib/AuthContext'
 import SpinningWheel from '../../components/game3/SpinningWheel'
 import PrizeEditorModal from '../../components/game3/PrizeEditorModal'
 import confetti from 'canvas-confetti'
@@ -8,6 +9,7 @@ import './Game3Page.css'
 
 export default function Game3Page() {
   const navigate = useNavigate()
+  const { logout } = useAuth()
 
   const [prizes, setPrizes] = useState<Prize[]>([])
   const [spinning, setSpinning] = useState(false)
@@ -51,13 +53,16 @@ export default function Game3Page() {
       <div className="game3-header">
         <div className="game3-header-actions">
           <button className="game3-btn-header" onClick={() => navigate('/')}>
-            ← Trang chu
+            ← Trang chủ
           </button>
           <button className="game3-btn-header" onClick={() => setShowEditor(true)}>
-            Thiet Lap Giai ({prizes.length})
+            Thiết Lập Giải ({prizes.length})
           </button>
           <button className="game3-btn-header game3-btn-results" onClick={() => navigate('/game3/results')}>
-            Lich Su
+            Lịch Sử
+          </button>
+          <button className="game3-btn-header" onClick={() => { logout(); navigate('/login') }}>
+            Đăng xuất
           </button>
         </div>
       </div>
@@ -79,7 +84,7 @@ export default function Game3Page() {
           <div className="prize-result-modal" onClick={e => e.stopPropagation()}>
             <div className="prize-result-glow" />
             <div className="prize-result-content">
-              <h2 className="prize-result-title">CHUC MUNG!</h2>
+              <h2 className="prize-result-title">CHÚC MỪNG!</h2>
               <div className="prize-result-name" style={{ color: wonPrize.color }}>
                 {wonPrize.name}
               </div>
@@ -91,7 +96,7 @@ export default function Game3Page() {
                 ))}
               </div>
               <button className="btn-prize-close" onClick={() => setWonPrize(null)}>
-                DONG
+                ĐÓNG
               </button>
             </div>
           </div>

@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Param, Query, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Query, Body, UseGuards } from '@nestjs/common';
 import { GameSessionsService } from './game-sessions.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('game-sessions')
 export class GameSessionsController {
   constructor(private service: GameSessionsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() body: { game_type: number; title: string; status?: string }) {
     return this.service.create(body);

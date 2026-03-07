@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { QRCodeSVG } from 'qrcode.react'
 import { api } from '../../lib/api'
+import { useAuth } from '../../lib/AuthContext'
 import { useGame1Players } from '../../lib/hooks/useGame1Players'
 import type { Game1Player } from '../../lib/types'
 import NameRoller from '../../components/NameRoller'
@@ -13,6 +14,7 @@ const SESSION_KEY = 'game1_session_id'
 
 export default function Game1Page() {
   const navigate = useNavigate()
+  const { logout } = useAuth()
   const [sessionId, setSessionId] = useState('')
   const [spinning, setSpinning] = useState(false)
   const [targetIndex, setTargetIndex] = useState<number | null>(null)
@@ -28,7 +30,7 @@ export default function Game1Page() {
         const data = await api.get(`/game-sessions/${saved}?status=active`).catch(() => null)
         if (data) { setSessionId(saved); return }
       }
-      const data = await api.post('/game-sessions', { game_type: 1, title: 'Quay Ten', status: 'active' })
+      const data = await api.post('/game-sessions', { game_type: 1, title: 'Quay Tên', status: 'active' })
       if (data) {
         localStorage.setItem(SESSION_KEY, data.id)
         setSessionId(data.id)
@@ -61,7 +63,7 @@ export default function Game1Page() {
 
   async function handleNewSession() {
     if (!confirm('Tạo phiên mới? Danh sách người chơi sẽ bị xóa.')) return
-    const data = await api.post('/game-sessions', { game_type: 1, title: 'Quay Ten', status: 'active' })
+    const data = await api.post('/game-sessions', { game_type: 1, title: 'Quay Tên', status: 'active' })
     if (data) {
       localStorage.setItem(SESSION_KEY, data.id)
       setSessionId(data.id)
@@ -87,6 +89,7 @@ export default function Game1Page() {
             Kết Quả ({winners.length})
           </button>
           <button className="btn-header btn-danger" onClick={handleNewSession}>Phiên Mới</button>
+          <button className="btn-header" onClick={() => { logout(); navigate('/login') }}>Đăng xuất</button>
         </div>
       </div>
 

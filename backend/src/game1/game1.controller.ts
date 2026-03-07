@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Patch, Param, Query, Body } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Param, Query, Body, UseGuards } from '@nestjs/common';
 import { Game1Service } from './game1.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('game1')
 export class Game1Controller {
@@ -27,6 +28,7 @@ export class Game1Controller {
     return this.service.create(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('players/:id')
   updatePlayer(@Param('id') id: string, @Body() body: Record<string, any>) {
     return this.service.update(id, body);

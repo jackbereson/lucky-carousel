@@ -47,23 +47,23 @@ export default function PrizeEditorModal({ prizes, onClose, onSaved }: PrizeEdit
   return (
     <div className="prize-editor-overlay" onClick={onClose}>
       <div className="prize-editor-modal" onClick={e => e.stopPropagation()}>
-        <h2 className="prize-editor-title">THIET LAP GIAI THUONG</h2>
+        <h2 className="prize-editor-title">THIẾT LẬP GIẢI THƯỞNG</h2>
 
         <div className="prize-add-row">
           <input
             type="text"
-            placeholder="Ten giai thuong..."
+            placeholder="Tên giải thưởng..."
             value={newName}
             onChange={e => setNewName(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && addPrize()}
             className="prize-input"
           />
-          <button className="btn-add-prize" onClick={addPrize}>Them</button>
+          <button className="btn-add-prize" onClick={addPrize}>Thêm</button>
         </div>
 
         <div className="prize-list">
           {items.length === 0 && (
-            <p className="prize-empty">Chua co giai thuong nao</p>
+            <p className="prize-empty">Chưa có giải thưởng nào</p>
           )}
           {items.map(prize => (
             <div key={prize.id} className="prize-item">
@@ -87,8 +87,8 @@ export default function PrizeEditorModal({ prizes, onClose, onSaved }: PrizeEdit
         </div>
 
         <div className="prize-editor-actions">
-          <button className="btn-cancel" onClick={onClose}>Huy</button>
-          <button className="btn-save-prizes" onClick={handleSave}>Luu ({items.length} giai)</button>
+          <button className="btn-cancel" onClick={onClose}>Hủy</button>
+          <button className="btn-save-prizes" onClick={handleSave}>Lưu ({items.length} giải)</button>
         </div>
       </div>
     </div>

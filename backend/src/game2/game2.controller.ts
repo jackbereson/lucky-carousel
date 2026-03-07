@@ -8,8 +8,10 @@ import {
   Param,
   Query,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import { Game2Service } from './game2.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('game2')
 export class Game2Controller {
@@ -39,6 +41,7 @@ export class Game2Controller {
     return this.service.getState(sessionId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('state/:sessionId')
   updateState(@Param('sessionId') sessionId: string, @Body() body: any) {
     return this.service.updateState(sessionId, body);
@@ -51,21 +54,25 @@ export class Game2Controller {
     return this.service.getQuestions(sessionId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('questions')
   createQuestion(@Body() body: any) {
     return this.service.createQuestion(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('questions/bulk')
   createQuestionsBulk(@Body() body: any[]) {
     return this.service.createQuestionsBulk(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('questions/:id')
   updateQuestion(@Param('id') id: string, @Body() body: any) {
     return this.service.updateQuestion(id, body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('questions/:id')
   deleteQuestion(@Param('id') id: string) {
     return this.service.deleteQuestion(id);
@@ -73,6 +80,7 @@ export class Game2Controller {
 
   // ===== Reset =====
 
+  @UseGuards(JwtAuthGuard)
   @Post('reset/:sessionId')
   resetSession(@Param('sessionId') sessionId: string) {
     return this.service.resetSession(sessionId);

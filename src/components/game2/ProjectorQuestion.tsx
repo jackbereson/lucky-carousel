@@ -25,7 +25,7 @@ export default function ProjectorQuestion({
     <div className="projector-question">
       <div className="projector-question__header">
         <div className="projector-question__number">
-          Cau hoi {questionIndex + 1} / {totalQuestions}
+          Câu hỏi {questionIndex + 1} / {totalQuestions}
         </div>
         <div className="projector-question__text">{question.question_text}</div>
       </div>

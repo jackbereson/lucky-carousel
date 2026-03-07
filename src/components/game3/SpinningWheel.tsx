@@ -139,8 +139,8 @@ export default function SpinningWheel({
         <div className="wheel-disc" style={{ transform: `rotate(${rotation}deg)` }}>
           {n === 0 ? (
             <div className="wheel-empty">
-              <p>Chua co giai thuong</p>
-              <p>Hay thiet lap giai thuong!</p>
+              <p>Chưa có giải thưởng</p>
+              <p>Hãy thiết lập giải thưởng!</p>
             </div>
           ) : (
             <>

@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './lib/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/login/LoginPage'
 import Game1Page from './pages/game1/Game1Page'
 import Game1RegisterPage from './pages/game1/Game1RegisterPage'
 import Game1ResultsPage from './pages/game1/Game1ResultsPage'
@@ -16,20 +19,28 @@ import './App.css'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/game1" element={<Game1Page />} />
-        <Route path="/game1/play/:sessionId" element={<Game1RegisterPage />} />
-        <Route path="/game1/results/:sessionId" element={<Game1ResultsPage />} />
-        <Route path="/game2/admin/:sessionId" element={<Game2AdminPage />} />
-        <Route path="/game2/host/:sessionId" element={<Game2HostPage />} />
-        <Route path="/game2/projector/:sessionId" element={<Game2ProjectorPage />} />
-        <Route path="/game2/play/:sessionId" element={<Game2RegisterPage />} />
-        <Route path="/game2/play/:sessionId/q" element={<Game2QuestionPage />} />
-        <Route path="/game3" element={<Game3Page />} />
-        <Route path="/game3/results" element={<Game3ResultsPage />} />
-        <Route path="/admin" element={<AdminHub />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+
+          {/* Player & projector routes (public) */}
+          <Route path="/game1/play/:sessionId" element={<Game1RegisterPage />} />
+          <Route path="/game1/results/:sessionId" element={<Game1ResultsPage />} />
+          <Route path="/game2/projector/:sessionId" element={<Game2ProjectorPage />} />
+          <Route path="/game2/play/:sessionId" element={<Game2RegisterPage />} />
+          <Route path="/game2/play/:sessionId/q" element={<Game2QuestionPage />} />
+          <Route path="/game3/results" element={<Game3ResultsPage />} />
+
+          {/* Protected admin routes */}
+          <Route path="/admin" element={<ProtectedRoute><AdminHub /></ProtectedRoute>} />
+          <Route path="/game1" element={<ProtectedRoute><Game1Page /></ProtectedRoute>} />
+          <Route path="/game2/admin/:sessionId" element={<ProtectedRoute><Game2AdminPage /></ProtectedRoute>} />
+          <Route path="/game2/host/:sessionId" element={<ProtectedRoute><Game2HostPage /></ProtectedRoute>} />
+          <Route path="/game3" element={<ProtectedRoute><Game3Page /></ProtectedRoute>} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }

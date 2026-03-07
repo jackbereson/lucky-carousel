@@ -6,4 +6,5 @@ services:
     environment:
       - MONGODB_URI=mongodb://host.docker.internal:27017/houze-lucky-wheel
       - PORT=3000
+      - JWT_SECRET=houze-lucky-wheel-jwt-secret-2024
     restart: unless-stopped

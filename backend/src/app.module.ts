@@ -7,6 +7,7 @@ import { GameSessionsModule } from './game-sessions/game-sessions.module';
 import { Game1Module } from './game1/game1.module';
 import { Game2Module } from './game2/game2.module';
 import { EventsModule } from './events/events.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { EventsModule } from './events/events.module';
       rootPath: join(__dirname, '..', 'public'),
       exclude: ['/api*'],
     }),
+    AuthModule,
     GameSessionsModule,
     Game1Module,
     Game2Module,
